@@ -1,27 +1,38 @@
 .node {
+  fill: lightsteelblue;
+  stroke: steelblue;
+  cursor: pointer;
+
   circle {
-    stroke-width: 3px;
+    stroke-width: .3px;
   }
 
-  &.selected {
+  &.branch-active {
+    fill: yellow;
+    background-color: #ccc;
+    text {
+      display: block;
+    }
+  }
+
+  &.node-active {
     fill: blue;
     stroke: darkblue;
   }
 
-  &:not(.selected) {
-    fill: lightsteelblue;
-    stroke: steelblue;
-  }
-
   text {
+    display: none;
     fill: black;
     stroke-width: 0px;
-    font: 12px sans-serif;
+    font: 1.2px sans-serif;
   }
 }
 
 .link {
   fill: none;
   stroke: #ccc;
-  stroke-width: 2px;
+  stroke-width: .2px;
+  &.active {
+    stroke: black;
+  }
 }
