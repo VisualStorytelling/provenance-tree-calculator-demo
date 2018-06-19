@@ -1,5 +1,5 @@
 {
-  "name": "provenance-tree-calculator-demo",
+  "name": "@visualstorytelling/provenance-tree-calculator-demo",
   "main": "src/index.js",
   "version": "1.0.0",
   "description": "",
@@ -51,9 +51,9 @@
   },
   "dependencies": {
     "@visualstorytelling/provenance-core": "^1.1.2",
-    "@visualstorytelling/provenance-tree-visualization": "https://github.com/VisualStorytelling/provenance-tree-visualization",
+    "@visualstorytelling/provenance-tree-visualization": "^1.0.0",
+    "cross-env": "5.0.5",
     "d3": "^5.4.0",
-    "d3-hierarchy": "^1.1.6",
-    "provenance-tree-visualization": "https://github.com/VisualStorytelling/provenance-tree-visualization"
+    "d3-hierarchy": "^1.1.6"
   }
 }
