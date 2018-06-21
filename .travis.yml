@@ -11,6 +11,7 @@ cache:
 jobs:
   include:
     - stage: build
+      install: yarn
       script:
         - rm -rf dist
         - yarn build
