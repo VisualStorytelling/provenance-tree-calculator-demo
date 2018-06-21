@@ -113,8 +113,8 @@ export class Calculator {
     ]);
     await this.makeActionAndApply(true, 'sub 2', 'subtract', [2], 'add', [2]);
     await this.traverser.toStateNode(intermediateNode.id);
-    await this.makeActionAndApply(true, 'mul 3', 'multiply', [3], 'divide', [
-      3,
+    await this.makeActionAndApply(true, 'mul 4', 'multiply', [4], 'divide', [
+      4,
     ]);
   }
 }
