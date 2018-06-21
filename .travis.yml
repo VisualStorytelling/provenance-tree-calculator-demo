@@ -11,11 +11,14 @@ cache:
 jobs:
   include:
     - stage: build
-      script: yarn build
+      script:
+        - rm -rf dist
+        - yarn build
     - stage: deploy to GH pages
       if: (branch = master)
       install: true
       script:
+        - ls -l dist
         - openssl aes-256-cbc -K $encrypted_3e928e27b2f9_key -iv $encrypted_3e928e27b2f9_iv -in github_deploy_key.enc -out ~/.ssh/id_rsa -d
         - chmod 400 ~/.ssh/id_rsa
         - git clone -b gh-pages --single-branch git@github.com:VisualStorytelling/provenance-tree-calculator-demo.git gh-pages
