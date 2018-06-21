@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - 'stable'
+
+cache:
+  directories:
+    - ~/mycache
+    - node_modules
+    - dist
+jobs:
+  include:
+    - stage: build
+      before_install: rm -rf dist
+      script: yarn build
+    - stage: deploy to GH pages
+      if: (branch = master)
+      script: echo "Deploy here"
