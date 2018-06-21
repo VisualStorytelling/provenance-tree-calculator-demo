@@ -50,10 +50,11 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
-    "@visualstorytelling/provenance-core": "^1.1.2",
-    "@visualstorytelling/provenance-tree-visualization": "^1.0.0",
+    "@visualstorytelling/provenance-core": "*",
+    "@visualstorytelling/provenance-tree-visualization": "*",
     "cross-env": "5.0.5",
     "d3": "^5.4.0",
-    "d3-hierarchy": "^1.1.6"
+    "d3-hierarchy": "^1.1.6",
+    "normalize.css": "^8.0.0"
   }
 }

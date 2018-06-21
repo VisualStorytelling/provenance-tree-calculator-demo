@@ -1,3 +1,17 @@
+html, * {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  position: relative;
+}
+
+#vis {
+  height: 300px;
+  width: 300px;
+}
+
 .node {
   fill: lightsteelblue;
   stroke: steelblue;
@@ -24,14 +38,14 @@
     display: none;
     fill: black;
     stroke-width: 0px;
-    font: 1.2px sans-serif;
+    font-family: sans-serif;
   }
 }
 
 .link {
   fill: none;
-  stroke: #ccc;
-  stroke-width: .2px;
+  stroke: black;
+  stroke-width: .5px;
   &.active {
     stroke: black;
   }

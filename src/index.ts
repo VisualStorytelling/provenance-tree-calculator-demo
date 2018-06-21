@@ -1,3 +1,4 @@
+import 'normalize.css';
 import './style.scss';
 import { Calculator } from './Calculator';
 import {
@@ -9,78 +10,46 @@ import {
 
 import { ProvenanceTreeVisualization } from '@visualstorytelling/provenance-tree-visualization';
 
-const makeButton = ({
-  text,
-  onClick,
-}: {
-  text: string;
-  onClick: () => any;
-}): HTMLButtonElement => {
-  const button = document.createElement('button');
-  button.innerHTML = text;
-  button.addEventListener('click', onClick);
-  return button;
-};
+const visDiv: HTMLDivElement = document.getElementById('vis') as HTMLDivElement;
+const stateDiv: HTMLDivElement = document.getElementById('state') as HTMLDivElement;
+const increaseBtn: HTMLButtonElement = document.getElementById('increase') as HTMLButtonElement;
 
-class Index {
-  private graph = new ProvenanceGraph({ name: 'calculator', version: '1.0.0' });
-  private registry = new ActionFunctionRegistry();
+const graph = new ProvenanceGraph({ name: 'calculator', version: '1.0.0' });
+const registry = new ActionFunctionRegistry();
+const tracker = new ProvenanceTracker(registry, graph);
+const traverser = new ProvenanceGraphTraverser(registry, graph);
 
-  private tracker = new ProvenanceTracker(this.registry, this.graph);
-  private traverser = new ProvenanceGraphTraverser(this.registry, this.graph);
+const calculator = new Calculator(
+  graph,
+  registry,
+  tracker,
+  traverser,
+);
 
-  private provenanceTreeVisualization: ProvenanceTreeVisualization;
+increaseBtn.addEventListener('click', () => {
+  tracker.applyAction({
+    do: 'add',
+    doArguments: [5],
+    undo: 'subtract',
+    undoArguments: [5],
+    metadata: {
+      createdBy: 'me',
+      createdOn: 'now',
+      tags: [],
+      userIntent: 'Because I want to',
+    },
+  });
+});
 
-  private app = new Calculator(
-    this.graph,
-    this.registry,
-    this.tracker,
-    this.traverser,
+graph.on('currentChanged', (event) => {
+  stateDiv.innerHTML = calculator.currentState().toString();
+});
+
+let provenanceTreeVisualization: ProvenanceTreeVisualization;
+
+calculator.setupBasicGraph().then(() => {
+  provenanceTreeVisualization = new ProvenanceTreeVisualization(
+    traverser,
+    visDiv,
   );
-
-  private statusDisplay = document.createElement('div');
-  private visContainer = document.createElement('div');
-
-  constructor() {
-    document.body.appendChild(this.statusDisplay);
-    document.body.appendChild(this.visContainer);
-    document.body.appendChild(
-      makeButton({
-        text: 'test',
-        onClick: () => {
-          this.tracker.applyAction({
-            do: 'add',
-            doArguments: [5],
-            undo: 'subtract',
-            undoArguments: [5],
-            metadata: {
-              createdBy: 'me',
-              createdOn: 'now',
-              tags: [],
-              userIntent: 'Because I want to',
-            },
-          });
-        },
-      }),
-    );
-
-    this.app.setupBasicGraph().then(() => {
-      this.provenanceTreeVisualization = new ProvenanceTreeVisualization(
-        this.traverser,
-        this.visContainer,
-      );
-    });
-
-    this.graph.on('currentChanged', (event) => {
-      this.displayCurrentState(event, this.app);
-    });
-  }
-
-  public displayCurrentState(event: Event, calculator: Calculator) {
-    this.statusDisplay.innerHTML = `
-      <p>${calculator.currentState()}</p>
-    `;
-  }
-}
-
-const index = new Index();
+});

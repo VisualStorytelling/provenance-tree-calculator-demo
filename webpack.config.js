@@ -17,6 +17,10 @@ module.exports = {
         loader: "style-loader!css-loader!sass-loader",
       },
       {
+        test: /\.css$/,
+        loader: "style-loader!css-loader",
+      },
+      {
         test: /\.json$/,
         loader: "json-loader",
       },
@@ -56,7 +60,7 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [new HtmlWebpackPlugin({template: 'src/index.html'})],
   devServer: {
     contentBase: path.resolve(__dirname, "dist/"),
   },
