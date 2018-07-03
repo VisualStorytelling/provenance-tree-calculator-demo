@@ -9,6 +9,9 @@ import {
 } from '@visualstorytelling/provenance-core';
 
 import { ProvenanceTreeVisualization } from '@visualstorytelling/provenance-tree-visualization';
+import { ProvenanceSlidedeck } from '../../provenance-slide-deck/src/provenance-slide-deck';
+import { ProvenanceSlidedeckVisualization } from '../../provenance-slide-deck/src/provenance-slide-deck-visualization';
+import { ProvenanceSlide } from '../../provenance-slide-deck/src/provenance-slide';
 
 const visDiv: HTMLDivElement = document.getElementById('vis') as HTMLDivElement;
 const stateDiv: HTMLDivElement = document.getElementById('state') as HTMLDivElement;
@@ -52,4 +55,12 @@ calculator.setupBasicGraph().then(() => {
     traverser,
     visDiv,
   );
+
+  const slideDeck = new ProvenanceSlidedeck(traverser);
+  const slide1 = new ProvenanceSlide('slide1', 1, 1, [], graph.root);
+  const slide2 = new ProvenanceSlide('slide2', 1, 1, [], graph.root.children[0]);
+  slideDeck.addSlide(slide1);
+  slideDeck.addSlide(slide2);
+  const provenanceSlidedeckVis =
+    new ProvenanceSlidedeckVisualization(slideDeck, document.getElementById('slides') as HTMLDivElement);
 });
