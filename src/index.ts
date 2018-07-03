@@ -1,5 +1,3 @@
-import 'normalize.css';
-import './style.scss';
 import { Calculator } from './Calculator';
 import {
   ProvenanceGraph,
@@ -9,9 +7,16 @@ import {
 } from '@visualstorytelling/provenance-core';
 
 import { ProvenanceTreeVisualization } from '@visualstorytelling/provenance-tree-visualization';
-import { ProvenanceSlidedeck } from '../../provenance-slide-deck/src/provenance-slide-deck';
-import { ProvenanceSlidedeckVisualization } from '../../provenance-slide-deck/src/provenance-slide-deck-visualization';
-import { ProvenanceSlide } from '../../provenance-slide-deck/src/provenance-slide';
+
+import {
+  ProvenanceSlide,
+  ProvenanceSlidedeck,
+  ProvenanceSlidedeckVisualization,
+} from '@visualstorytelling/provenance-slide-deck';
+
+import 'normalize.css';
+import './style.scss';
+import '@visualstorytelling/provenance-slide-deck/dist/bundle.css';
 
 const visDiv: HTMLDivElement = document.getElementById('vis') as HTMLDivElement;
 const stateDiv: HTMLDivElement = document.getElementById('state') as HTMLDivElement;
