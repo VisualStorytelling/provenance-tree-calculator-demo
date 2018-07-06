@@ -61,9 +61,9 @@ calculator.setupBasicGraph().then(() => {
     visDiv,
   );
 
-  const slideDeck = new ProvenanceSlidedeck(traverser);
-  const slide1 = new ProvenanceSlide('slide1', 1, 1, [], graph.root);
-  const slide2 = new ProvenanceSlide('slide2', 1, 1, [], graph.root.children[0]);
+  const slideDeck = new ProvenanceSlidedeck({ name: 'calculator', version: '1.0.0' }, traverser);
+  const slide1 = new ProvenanceSlide('Root', 1, 1, [], graph.root);
+  const slide2 = new ProvenanceSlide('Add 13', 1, 1, [], graph.root.children[0]);
   slideDeck.addSlide(slide1);
   slideDeck.addSlide(slide2);
   const provenanceSlidedeckVis =
