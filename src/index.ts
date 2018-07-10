@@ -12,6 +12,7 @@ import {
   ProvenanceSlide,
   ProvenanceSlidedeck,
   ProvenanceSlidedeckVisualization,
+  ProvenanceSlidePlayer,
 } from '@visualstorytelling/provenance-slide-deck';
 
 import 'normalize.css';
@@ -21,11 +22,14 @@ import '@visualstorytelling/provenance-slide-deck/dist/bundle.css';
 const visDiv: HTMLDivElement = document.getElementById('vis') as HTMLDivElement;
 const stateDiv: HTMLDivElement = document.getElementById('state') as HTMLDivElement;
 const increaseBtn: HTMLButtonElement = document.getElementById('increase') as HTMLButtonElement;
+const playBtn: HTMLButtonElement = document.getElementById('play') as HTMLButtonElement;
 
 const graph = new ProvenanceGraph({ name: 'calculator', version: '1.0.0' });
 const registry = new ActionFunctionRegistry();
 const tracker = new ProvenanceTracker(registry, graph);
 const traverser = new ProvenanceGraphTraverser(registry, graph);
+
+let player: ProvenanceSlidePlayer<ProvenanceSlide>;
 
 const calculator = new Calculator(
   graph,
@@ -79,4 +83,15 @@ calculator.setupBasicGraph().then(() => {
 
   const provenanceSlidedeckVis =
     new ProvenanceSlidedeckVisualization(slideDeck, document.getElementById('slidedeck_root') as HTMLDivElement);
+
+  player = new ProvenanceSlidePlayer(
+    slideDeck.slides as ProvenanceSlide[],
+    (slide) => slideDeck.selectedSlide = slide,
+  );
+
+  playBtn.addEventListener('click', () => {
+    player.setSlideIndex(slideDeck.slides.indexOf(slideDeck.selectedSlide));
+    player.play();
+  });
+
 });
