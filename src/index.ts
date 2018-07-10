@@ -62,10 +62,21 @@ calculator.setupBasicGraph().then(() => {
   );
 
   const slideDeck = new ProvenanceSlidedeck({ name: 'calculator', version: '1.0.0' }, traverser);
-  const slide1 = new ProvenanceSlide('Root', 1, 1, [], graph.root);
-  const slide2 = new ProvenanceSlide('Add 13', 1, 1, [], graph.root.children[0]);
+  const slide1 = new ProvenanceSlide('Root', 5000, 1000, [], graph.root);
+  const slide2 = new ProvenanceSlide('Add 13', 5000, 1000, [], graph.root.children[0]);
+  const slide3 = new ProvenanceSlide('Sub 20', 5000, 1000, [], graph.root.children[0]
+    .children[1].children[0]);
+  const slide4 = new ProvenanceSlide('Add 5', 5000, 1000, [], graph.root.children[0]
+    .children[1].children[0].children[0]);
+  const slide5 = new ProvenanceSlide('Mul 2', 5000, 1000, [], graph.root.children[0]
+    .children[1].children[0].children[0].children[0]);
+
   slideDeck.addSlide(slide1);
   slideDeck.addSlide(slide2);
+  slideDeck.addSlide(slide3);
+  slideDeck.addSlide(slide4);
+  slideDeck.addSlide(slide5);
+
   const provenanceSlidedeckVis =
-    new ProvenanceSlidedeckVisualization(slideDeck, document.getElementById('slides') as HTMLDivElement);
+    new ProvenanceSlidedeckVisualization(slideDeck, document.getElementById('slidedeck_root') as HTMLDivElement);
 });
