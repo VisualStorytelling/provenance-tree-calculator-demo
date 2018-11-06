@@ -37,8 +37,8 @@ let player: ProvenanceSlidedeckPlayer<ProvenanceSlide>;
 
 const calculator = new Calculator(graph, registry, tracker, traverser);
 
-increaseBtn.addEventListener('click', () => {
-  tracker.applyAction({
+increaseBtn.addEventListener('click', async () => {
+  const node = await tracker.applyAction({
     do: 'add',
     doArguments: [5],
     undo: 'subtract',
@@ -47,9 +47,10 @@ increaseBtn.addEventListener('click', () => {
       createdBy: 'me',
       createdOn: 'now',
       tags: [],
-      userIntent: 'Because I want to',
+      userIntent: 'add',
     },
   });
+  node.label = 'add 5';
 });
 
 graph.on('currentChanged', (event) => {

@@ -1,8 +1,10 @@
-html, * {
+html,
+* {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   position: relative;
 }
@@ -22,7 +24,7 @@ body {
   cursor: pointer;
 
   circle {
-    stroke-width: .3px;
+    stroke-width: 0.3px;
   }
 
   &.branch-active {
@@ -49,8 +51,20 @@ body {
 .link {
   fill: none;
   stroke: black;
-  stroke-width: .5px;
+  stroke-width: 0.5px;
   &.active {
     stroke: black;
   }
+}
+
+.intent_multiply {
+  fill: red;
+}
+
+.intent_add {
+  fill: green;
+}
+
+.intent_subtract {
+  fill: indigo;
 }

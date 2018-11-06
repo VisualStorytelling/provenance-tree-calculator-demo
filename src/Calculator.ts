@@ -67,7 +67,7 @@ export class Calculator {
         createdBy: 'me',
         createdOn: 'now',
         tags: [],
-        userIntent: 'Because I want to',
+        userIntent: doAction,
       },
     };
     if (reversible) {
