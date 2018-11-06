@@ -11,8 +11,7 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --watch --inline --host 0.0.0.0",
-    "lint": "tslint --project .",
-    "precommit": "lint-staged"
+    "lint": "tslint --project ."
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
