@@ -19,5 +19,6 @@
     "variable-name": false,
     "quotemark": [true, "single", "avoid-escape", "avoid-template"]
   },
+  "exclude": ["dist/*", "node_modules"],
   "rulesDirectory": []
 }

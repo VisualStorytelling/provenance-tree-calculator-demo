@@ -1,5 +1,4 @@
 .vscode/
-dist/
 .git/
 node_modules/
 .idea
